@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="timeout_error">Timeout exception</string>
+    <string name="unknown_host_error">Can\'t connect to API. Check internet connection </string>
+    <string name="unknown_error">Unknown error</string>
+</resources>

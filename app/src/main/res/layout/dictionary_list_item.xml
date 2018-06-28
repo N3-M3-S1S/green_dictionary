@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="listItem"
+            type="com.rektapps.greendictionary.view.displayitem.ListItem" />
+
+        <variable
+            name="viewmodel"
+            type="com.rektapps.greendictionary.viewmodel.DictionaryListViewModel" />
+
+        <variable
+            name="isDeleteButtonVisible"
+            type="Boolean" />
+
+        <import type="android.view.View" />
+
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dictionaryListItemHeight"
+        android:background="@{listItem.isSelected ?  @color/listItemSelectedColor : @color/cardview_light_background}"
+        android:onClick="@{()->viewmodel.listItemClicked(listItem)}"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="16dp">
+
+
+        <ImageButton
+            android:id="@+id/entry_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?android:selectableItemBackground"
+            android:onClick="@{()->viewmodel.onDeleteItemClicked(listItem)}"
+            android:visibility="@{isDeleteButtonVisible ? View.INVISIBLE : View.VISIBLE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/entry_word"
+            app:srcCompat="@drawable/ic_close_black_24dp" />
+
+
+        <TextView
+            android:id="@+id/entry_word"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:paddingRight="16dp"
+            android:text="@{listItem.entry.phrase}"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@+id/entry_delete"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="spread_inside" />
+
+
+        <TextView
+            android:id="@+id/entry_translation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:paddingRight="16dp"
+            app:bindListItemTranslation="@{listItem.translation}"
+            app:layout_constraintEnd_toEndOf="@+id/entry_word"
+            app:layout_constraintEnd_toStartOf="@+id/entry_delete"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/entry_word" />
+
+        <TextView
+            android:id="@+id/entry_languages"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:paddingRight="16dp"
+            app:bindLanguageDest="@{listItem.entry.languageDestCode}"
+            app:bindLanguageFrom="@{listItem.entry.languageFromCode}"
+            app:layout_constraintEnd_toStartOf="@+id/entry_delete"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/entry_translation" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+
+</layout>

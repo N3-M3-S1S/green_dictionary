@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">Green dictionary</string>
+    <string name="translationsTitle">Translations:</string>
+    <string name="noTranslations">No translations</string>
+    <string name="examplesTitle">Examples:</string>
+    <string name="noExamples">No examples</string>
+    <string name="emptyList">List is empty</string>
+    <string name="addToFavorite">Add to favorite</string>
+    <string name="searchLanguage">Search language</string>
+    <string name="languageFromCode">Language from:</string>
+    <string name="languageDestCode">Language to:</string>
+    <string name="searchPlaceholder">Enter text here:</string>
+    <string name="multiSelect">Multiple selection</string>
+    <string name="languages_names">From: %1$s To: %2$s</string>
+    <string name="deleteSelected">Delete selected</string>
+    <string name="copiedToClipboard">Copied to clipboard</string>
+</resources>

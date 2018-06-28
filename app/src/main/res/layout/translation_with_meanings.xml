@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="translation"
+            type="com.rektapps.greendictionary.model.entity.Translation" />
+
+        <variable
+            name="visibleMeaningText"
+            type="String" />
+
+        <variable
+            name="viewmodel"
+            type="com.rektapps.greendictionary.viewmodel.EntryScreenViewModel"/>
+
+        <import type="android.view.View" />
+    </data>
+
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/translation_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp">
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toStartOf="@+id/expand_arrow"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <include
+                android:id="@+id/include"
+                layout="@layout/translation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="0dp"
+                app:viewmodel="@{viewmodel}"
+                app:translation="@{translation}" />
+
+            <include
+                android:id="@+id/visible_meaning"
+                layout="@layout/meaning"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:meaningText="@{visibleMeaningText}" />
+
+            <net.cachapa.expandablelayout.ExpandableLayout
+                android:id="@+id/expandable_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:el_duration="300"
+                app:el_expanded="false">
+
+                <LinearLayout
+                    android:id="@+id/collapsed_meanings_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+            </net.cachapa.expandablelayout.ExpandableLayout>
+
+        </LinearLayout>
+
+
+        <ImageView
+            android:id="@+id/expand_arrow"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="16dp"
+            android:visibility="@{translation.meanings.size() > 1 ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/ic_keyboard_arrow_down" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+</layout>

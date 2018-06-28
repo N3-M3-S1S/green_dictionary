@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.rektapps.greendictionary.viewmodel.EntryScreenViewModel" />
+
+        <variable
+            name="entryScreenItem"
+            type="com.rektapps.greendictionary.view.displayitem.EntryScreenItem" />
+
+        <import type="android.view.View" />
+    </data>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/entry_screen_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?android:actionBarSize"
+            android:background="@android:color/darker_gray">
+
+            <ImageButton
+                android:id="@+id/entry_screen_close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?android:selectableItemBackground"
+                android:src="@drawable/ic_close_black_24dp" />
+
+        </android.support.v7.widget.Toolbar>
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/entry_word"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:paddingTop="8dp"
+                    android:text="@{entryScreenItem.entry.phrase}"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/black"
+                    android:textIsSelectable="true"
+                    android:textSize="@dimen/entryScreenPhraseSize"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@+id/entry_word2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/entry_languages"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="8dp"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/black"
+                    android:textIsSelectable="true"
+                    android:textSize="@dimen/entryScreenLanguagesSize"
+                    app:bindLanguageDest="@{entryScreenItem.entry.languageDestCode}"
+                    app:bindLanguageFrom="@{entryScreenItem.entry.languageFromCode}"
+                    app:layout_constraintBottom_toTopOf="@+id/translation_title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/entry_word" />
+
+                <TextView
+                    android:id="@+id/translation_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:text="@string/translationsTitle"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/entryScreenTitleSize" />
+
+                <TextView
+                    android:id="@+id/no_translations"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:text="@string/noTranslations"
+                    android:textSize="@dimen/entryScreenNoItemsSize"
+                    android:visibility="@{entryScreenItem.translations.size == 0 ? View.VISIBLE : View.GONE}" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/translations_rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="@{entryScreenItem.translations.size != 0 ? View.VISIBLE : View.GONE}"
+                    app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
+
+                <TextView
+                    android:id="@+id/examples_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:text="@string/examplesTitle"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/entryScreenTitleSize" />
+
+                <TextView
+                    android:id="@+id/no_examles"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:text="@string/noExamples"
+                    android:textSize="@dimen/entryScreenNoItemsSize"
+                    android:visibility="@{entryScreenItem.examples.size == 0 ? View.VISIBLE : View.GONE}" />
+
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/examples_rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="@{entryScreenItem.examples.size != 0 ? View.VISIBLE : View.GONE}"
+                    app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
+
+            </LinearLayout>
+
+        </android.support.v4.widget.NestedScrollView>
+
+
+    </LinearLayout>
+
+</layout>

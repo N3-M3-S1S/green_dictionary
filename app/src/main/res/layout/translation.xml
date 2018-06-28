@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="translation"
+            type="com.rektapps.greendictionary.model.entity.Translation" />
+
+        <variable
+            name="viewmodel"
+            type="com.rektapps.greendictionary.viewmodel.EntryScreenViewModel"/>
+    </data>
+
+    <TextView
+        android:id="@+id/translation_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/LongClickStyle"
+        android:layout_marginBottom="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="16dp"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:onLongClick="@{()->viewmodel.copyTextToClipboardOnLongClick(translation.text)}"
+        app:bindHtmlText="@{translation.text}" />
+</layout>
+
+

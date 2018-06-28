@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="translationsTitle">Варианты перевода:</string>
+    <string name="noTranslations">Нет переводов</string>
+    <string name="examplesTitle">Примеры:</string>
+    <string name="noExamples">Нет примеров</string>
+    <string name="emptyList">Список пуст</string>
+    <string name="addToFavorite">Добавить в избранное</string>
+    <string name="searchLanguage">Поиск языка</string>
+    <string name="languageFromCode">Язык оригинала:</string>
+    <string name="languageDestCode">Язык перевода:</string>
+    <string name="searchPlaceholder">Введите текст:</string>
+    <string name="languages_names">Оригинал: %1$s Перевод: %2$s</string>
+    <string name="multiSelect">Групповой выбор</string>
+    <string name="deleteSelected">Удалить выбранное</string>
+    <string name="copiedToClipboard">Скопировано в буфер обмена</string>
+</resources>

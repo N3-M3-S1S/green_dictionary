@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="timeout_error">Превышен интервал ожидания для запроса</string>
+    <string name="unknown_host_error">Невозможно соедениться с API. Проверьте интернет-соединение</string>
+    <string name="unknown_error">Неизвестная ошибка</string>
+</resources>

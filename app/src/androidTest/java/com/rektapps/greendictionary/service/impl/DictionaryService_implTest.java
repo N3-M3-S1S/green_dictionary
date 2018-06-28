@@ -17,6 +17,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executors;
 
 import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
@@ -40,7 +41,7 @@ public class DictionaryService_implTest {
 
     @Before
     public void init() {
-        dictionaryService = new DictionaryServiceImpl(mockEntryDao, mockExampleDao, mockTranslationsDao);
+        dictionaryService = new DictionaryServiceImpl(mockEntryDao, mockExampleDao, mockTranslationsDao, Executors.newSingleThreadExecutor());
     }
 
 

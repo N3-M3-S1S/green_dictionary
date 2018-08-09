@@ -8,6 +8,7 @@ import android.databinding.DataBindingUtil;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.BottomSheetDialog;
@@ -23,8 +24,8 @@ import android.widget.Toast;
 
 import com.rektapps.greendictionary.greendictionary.R;
 import com.rektapps.greendictionary.greendictionary.databinding.EntryScreenBinding;
-import com.rektapps.greendictionary.view.adapter.ExamplesAdapter;
-import com.rektapps.greendictionary.view.adapter.TranslationsAdapter;
+import com.rektapps.greendictionary.view.adapter.impl.ExamplesAdapter;
+import com.rektapps.greendictionary.view.adapter.impl.TranslationsAdapter;
 import com.rektapps.greendictionary.view.displayitem.EntryScreenItem;
 import com.rektapps.greendictionary.viewmodel.EntryScreenViewModel;
 
@@ -34,13 +35,15 @@ import dagger.android.support.AndroidSupportInjection;
 
 public class EntryScreen extends BottomSheetDialogFragment {
     private static final String ENTRY_KEY = "entry";
-    @Inject
-    ViewModelProvider.Factory factory;
-    @Inject
-    TranslationsAdapter translationsAdapter;
     private EntryScreenBinding entryScreenBinding;
     private EntryScreenViewModel viewModel;
     private EntryScreenItem entryScreenItem;
+    @Inject
+    ViewModelProvider.Factory factory;
+    @Inject
+    ExamplesAdapter examplesAdapter;
+    @Inject
+    TranslationsAdapter translationsAdapter;
 
     public static DialogFragment getInstance(EntryScreenItem entryScreenItem) {
         DialogFragment fragment = new EntryScreen();
@@ -54,26 +57,32 @@ public class EntryScreen extends BottomSheetDialogFragment {
     public void onAttach(Context context) {
         AndroidSupportInjection.inject(this);
         super.onAttach(context);
-        viewModel = ViewModelProviders.of(this, factory).get(EntryScreenViewModel.class);
-        getLifecycle().addObserver(viewModel);
         entryScreenItem = ((EntryScreenItem) getArguments().getSerializable(ENTRY_KEY));
-        translationsAdapter.setTranslations(entryScreenItem.getTranslations());
-        translationsAdapter.setViewModel(viewModel);
+        viewModel = ViewModelProviders.of(this, factory).get(EntryScreenViewModel.class);
         viewModel.setEntryScreenItem(entryScreenItem);
+        getLifecycle().addObserver(viewModel);
         viewModel.getIsEntryFavoriteLiveData().observe(this, this::setFavoriteIcon);
         viewModel.getCopiedToClipboardEvent().observe(this, event -> Toast.makeText(getActivity(), R.string.copiedToClipboard, Toast.LENGTH_SHORT).show());
+        initializeAdapters();
+    }
+
+
+    private void initializeAdapters(){
+        examplesAdapter.setViewModel(viewModel);
+        translationsAdapter.setViewModel(viewModel);
+        examplesAdapter.setItems(entryScreenItem.getExamples());
+        translationsAdapter.setItems(entryScreenItem.getTranslations());
     }
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         entryScreenBinding = DataBindingUtil.inflate(inflater, R.layout.entry_screen, container, false);
         entryScreenBinding.setEntryScreenItem(entryScreenItem);
-        entryScreenBinding.setViewmodel(viewModel);
         entryScreenBinding.examplesRv.setNestedScrollingEnabled(false);
         entryScreenBinding.translationsRv.setNestedScrollingEnabled(false);
         entryScreenBinding.translationsRv.setAdapter(translationsAdapter);
-        entryScreenBinding.examplesRv.setAdapter(new ExamplesAdapter(entryScreenItem.getExamples(), viewModel));
+        entryScreenBinding.examplesRv.setAdapter(examplesAdapter);
         entryScreenBinding.entryScreenClose.setOnClickListener(v -> dismiss());
         entryScreenBinding.entryScreenToolbar.inflateMenu(R.menu.entry_menu);
         entryScreenBinding.entryScreenToolbar.setOnMenuItemClickListener(item -> {
@@ -109,6 +118,5 @@ public class EntryScreen extends BottomSheetDialogFragment {
             icon.setTint(ContextCompat.getColor(getContext(), R.color.colorAccent));
         }
     }
-
 
 }

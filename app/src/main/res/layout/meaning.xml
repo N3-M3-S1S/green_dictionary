@@ -1,8 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
             name="meaningText"
             type="String" />
@@ -10,11 +10,12 @@
 
 
     <TextView
-        android:id="@+id/meaning_tv"
+        android:id="@+id/meaningTv"
+        style="@style/LongClickStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
+        android:padding="16dp"
+        android:textColor="@color/textColorGray"
         app:bindHtmlText="@{meaningText}" />
 
 </layout>

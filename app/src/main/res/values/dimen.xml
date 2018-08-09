@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="padding">16dp</dimen>    
-    <dimen name="size">14sp</dimen>
 
     <dimen name="entryScreenTitleSize">20sp</dimen>
     <dimen name="entryScreenPhraseSize">34sp</dimen>
@@ -9,6 +7,7 @@
     <dimen name="entryScreenNoItemsSize">24sp</dimen>
 
     <dimen name="exampleSize">16sp</dimen>
+    <dimen name="translationSize">16sp</dimen>
 
     <dimen name="noItemsPicSize">100dp</dimen>
     <dimen name="noItemsTextSize">20sp</dimen>

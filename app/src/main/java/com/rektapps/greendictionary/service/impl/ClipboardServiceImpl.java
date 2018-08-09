@@ -13,10 +13,9 @@ public class ClipboardServiceImpl implements ClipboardService {
     private ClipboardManager clipboardManager;
 
     @Inject
-    ClipboardServiceImpl(Context context){
+    ClipboardServiceImpl(Context context) {
         clipboardManager = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
     }
-
 
 
     @Override

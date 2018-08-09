@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -6,11 +7,6 @@
         <variable
             name="example"
             type="com.rektapps.greendictionary.model.entity.Example" />
-
-        <variable
-            name="viewmodel"
-            type="com.rektapps.greendictionary.viewmodel.EntryScreenViewModel"/>
-
 
     </data>
 
@@ -28,7 +24,6 @@
             android:padding="16dp"
             android:textColor="@android:color/black"
             android:textSize="@dimen/exampleSize"
-            android:onLongClick="@{() -> viewmodel.copyTextToClipboardOnLongClick(example.firstExample)}"
             app:bindHtmlText="@{example.firstExample}" />
 
         <TextView
@@ -39,7 +34,6 @@
             android:padding="16dp"
             android:textColor="@android:color/black"
             android:textSize="@dimen/exampleSize"
-            android:onLongClick="@{() -> viewmodel.copyTextToClipboardOnLongClick(example.secondExample)}"
             app:bindHtmlText="@{example.secondExample}" />
 
     </LinearLayout>

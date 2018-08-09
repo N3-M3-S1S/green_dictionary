@@ -3,28 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
             name="translation"
             type="com.rektapps.greendictionary.model.entity.Translation" />
-
-        <variable
-            name="viewmodel"
-            type="com.rektapps.greendictionary.viewmodel.EntryScreenViewModel"/>
     </data>
 
     <TextView
-        android:id="@+id/translation_tv"
+        style="@style/LongClickStyle"
+        android:id="@+id/translationTv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/LongClickStyle"
-        android:layout_marginBottom="16dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:paddingTop="16dp"
-        android:textColor="@android:color/black"
-        android:textSize="16sp"
-        android:onLongClick="@{()->viewmodel.copyTextToClipboardOnLongClick(translation.text)}"
+        android:padding="16dp"
+        android:textColor="@color/textColorBlack"
+        android:textSize="@dimen/translationSize"
         app:bindHtmlText="@{translation.text}" />
 </layout>
 

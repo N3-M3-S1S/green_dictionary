@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 
 import com.rektapps.greendictionary.greendictionary.R;
 import com.rektapps.greendictionary.greendictionary.databinding.DictionaryListBinding;
-import com.rektapps.greendictionary.view.adapter.ListAdapter;
+import com.rektapps.greendictionary.view.adapter.impl.ListAdapter;
 import com.rektapps.greendictionary.viewmodel.DictionaryListViewModel;
 import com.rektapps.greendictionary.viewmodel.shared.ListCountViewModel;
 import com.rektapps.greendictionary.viewmodel.shared.SelectedListItemsCountViewModel;
@@ -27,14 +27,17 @@ import dagger.android.support.DaggerFragment;
 
 public class DictionaryListFragment extends DaggerFragment {
     private static String LIST_TYPE_KEY = "type";
-    @Inject
-    ViewModelProvider.Factory factory;
     private ListType listType;
     private DictionaryListBinding itemsListBinding;
     private DictionaryListViewModel viewModel;
     private ListCountViewModel countViewModel;
     private SelectedListItemsCountViewModel selectedCountViewModel;
-    private ListAdapter listAdapter;
+
+    @Inject
+    ViewModelProvider.Factory factory;
+
+    @Inject
+    ListAdapter listAdapter;
 
     public static DictionaryListFragment getInstance(ListType listType) {
         DictionaryListFragment fragment = new DictionaryListFragment();
@@ -50,7 +53,6 @@ public class DictionaryListFragment extends DaggerFragment {
         super.onAttach(context);
         listType = (ListType) getArguments().getSerializable(LIST_TYPE_KEY);
         viewModel = ViewModelProviders.of(this, factory).get(DictionaryListViewModel.class);
-        listAdapter = new ListAdapter();
         selectedCountViewModel = ViewModelProviders.of(getActivity()).get(SelectedListItemsCountViewModel.class);
         countViewModel = ViewModelProviders.of(getActivity()).get(ListCountViewModel.class);
 

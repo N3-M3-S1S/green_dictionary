@@ -17,7 +17,7 @@ public abstract class AndroidBindingModule {
     @ContributesAndroidInjector
     abstract DictionaryListFragment listFragment();
 
-    @ContributesAndroidInjector(modules = ViewHolderFactoryModule.class)
+    @ContributesAndroidInjector
     abstract EntryScreen entryScreenDialog();
 
     @ContributesAndroidInjector

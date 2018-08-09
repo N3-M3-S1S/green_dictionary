@@ -27,8 +27,7 @@
         android:background="@{listItem.isSelected ?  @color/listItemSelectedColor : @color/cardview_light_background}"
         android:onClick="@{()->viewmodel.listItemClicked(listItem)}"
         android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:paddingTop="16dp">
+        android:paddingRight="16dp">
 
 
         <ImageButton
@@ -39,25 +38,26 @@
             android:onClick="@{()->viewmodel.onDeleteItemClicked(listItem)}"
             android:visibility="@{isDeleteButtonVisible ? View.INVISIBLE : View.VISIBLE}"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/entry_word"
+            app:layout_constraintTop_toTopOf="@+id/entryPhrase"
             app:srcCompat="@drawable/ic_close_black_24dp" />
 
 
         <TextView
-            android:id="@+id/entry_word"
+            android:id="@+id/entryPhrase"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="16dp"
             android:ellipsize="end"
             android:maxLines="1"
-            android:paddingRight="16dp"
             android:text="@{listItem.entry.phrase}"
-            android:textColor="@android:color/black"
+            android:textColor="@color/textColorBlack"
             android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/entry_translation"
             app:layout_constraintEnd_toStartOf="@+id/entry_delete"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="spread_inside" />
+            app:layout_constraintTop_toTopOf="parent" />
 
 
         <TextView
@@ -66,22 +66,27 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="1"
-            android:paddingRight="16dp"
+            android:textColor="@color/textColorGray"
             app:bindListItemTranslation="@{listItem.translation}"
-            app:layout_constraintEnd_toEndOf="@+id/entry_word"
-            app:layout_constraintEnd_toStartOf="@+id/entry_delete"
+            app:layout_constraintBottom_toTopOf="@+id/entryLanguages"
+            app:layout_constraintEnd_toEndOf="@+id/entryPhrase"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/entry_word" />
+            app:layout_constraintTop_toBottomOf="@+id/entryPhrase" />
 
         <TextView
-            android:id="@+id/entry_languages"
+            android:id="@+id/entryLanguages"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
             android:ellipsize="end"
-            android:paddingRight="16dp"
+            android:minLines="1"
+            android:textColor="@color/textColorGray"
             app:bindLanguageDest="@{listItem.entry.languageDestCode}"
             app:bindLanguageFrom="@{listItem.entry.languageFromCode}"
-            app:layout_constraintEnd_toStartOf="@+id/entry_delete"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/entryPhrase"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/entry_translation" />
 

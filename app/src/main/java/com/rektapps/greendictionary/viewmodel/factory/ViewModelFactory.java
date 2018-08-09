@@ -3,6 +3,7 @@ package com.rektapps.greendictionary.viewmodel.factory;
 import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import java.util.Map;
 
@@ -19,6 +20,7 @@ public class ViewModelFactory implements ViewModelProvider.Factory {
     @Inject
     ViewModelFactory(Map<Class<? extends ViewModel>, Provider<ViewModel>> viewModels) {
         this.viewModels = viewModels;
+        Log.d("DEBUG", "ViewModelFactory: " + viewModels.size());
     }
 
     @NonNull

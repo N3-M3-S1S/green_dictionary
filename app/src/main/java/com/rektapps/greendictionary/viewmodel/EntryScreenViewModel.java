@@ -53,7 +53,7 @@ public class EntryScreenViewModel extends ViewModel implements LifecycleObserver
 
 
     public void onMenuItemClicked(int itemId) {
-        if(itemId == R.id.entry_favorite)
+        if (itemId == R.id.entry_favorite)
             toggleEntryFavorite();
 
     }

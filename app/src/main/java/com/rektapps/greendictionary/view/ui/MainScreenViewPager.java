@@ -21,7 +21,6 @@ public class MainScreenViewPager extends ViewPager {
         isPageChangingEnabled = true;
     }
 
-
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         return isPageChangingEnabled && super.onInterceptTouchEvent(ev);
@@ -31,7 +30,6 @@ public class MainScreenViewPager extends ViewPager {
     public boolean onTouchEvent(MotionEvent ev) {
         return isPageChangingEnabled && super.onTouchEvent(ev);
     }
-
 
     public void setPageChangingEnabled(boolean isPageChangingEnabled) {
         this.isPageChangingEnabled = isPageChangingEnabled;

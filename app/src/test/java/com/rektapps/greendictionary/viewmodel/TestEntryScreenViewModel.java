@@ -59,14 +59,13 @@ public class TestEntryScreenViewModel {
     }
 
     @Test
-    public void testCopyToClipboard(){
+    public void testCopyToClipboard() {
         String testString = "test";
         viewModel.copyTextToClipboardOnLongClick(testString);
         ArgumentCaptor<String> argumentCaptor = ArgumentCaptor.forClass(String.class);
 
         verify(mockClipboardService, times(1)).copyToClipboard(argumentCaptor.capture());
         assertTrue(argumentCaptor.getValue().equals(testString));
-
 
 
     }

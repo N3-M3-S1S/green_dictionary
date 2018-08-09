@@ -10,8 +10,6 @@ import com.rektapps.greendictionary.viewmodel.LanguagesSelectViewModel;
 import com.rektapps.greendictionary.viewmodel.MainViewViewModel;
 import com.rektapps.greendictionary.viewmodel.factory.ViewModelFactory;
 
-import javax.inject.Singleton;
-
 import dagger.Binds;
 import dagger.Module;
 import dagger.multibindings.IntoMap;
@@ -29,19 +27,18 @@ public interface ViewModelModule {
     @ViewModelKey(DictionaryListViewModel.class)
     ViewModel providesListViewModel(DictionaryListViewModel dictionaryListViewModel);
 
-    @Binds
-    @IntoMap
-    @ViewModelKey(EntryScreenViewModel.class)
-    ViewModel entryScreenViewModel(EntryScreenViewModel entryScreenViewModel);
 
     @Binds
     @IntoMap
     @ViewModelKey(LanguagesSelectViewModel.class)
     ViewModel providesLanguageSelectViewModel(LanguagesSelectViewModel languagesSelectViewModel);
 
+    @Binds
+    @IntoMap
+    @ViewModelKey(EntryScreenViewModel.class)
+    ViewModel entryScreenViewModel(EntryScreenViewModel entryScreenViewModel);
 
     @Binds
-    @Singleton
     ViewModelProvider.Factory bindsFactory(ViewModelFactory factory);
 
 }

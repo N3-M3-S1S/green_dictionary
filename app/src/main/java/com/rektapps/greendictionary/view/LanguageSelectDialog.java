@@ -17,7 +17,7 @@ import android.widget.SearchView;
 import com.rektapps.greendictionary.greendictionary.R;
 import com.rektapps.greendictionary.greendictionary.databinding.LanguageListBinding;
 import com.rektapps.greendictionary.model.language.LanguageType;
-import com.rektapps.greendictionary.view.adapter.LanguagesAdapter;
+import com.rektapps.greendictionary.view.adapter.impl.LanguagesAdapter;
 import com.rektapps.greendictionary.viewmodel.LanguagesSelectViewModel;
 import com.rektapps.greendictionary.viewmodel.shared.eventviewmodel.LanguageSelectionEventViewModel;
 
@@ -27,11 +27,12 @@ import dagger.android.support.DaggerAppCompatDialogFragment;
 
 public class LanguageSelectDialog extends DaggerAppCompatDialogFragment {
     private static String LANGUAGE_TYPE_KEY = "lng";
-    @Inject
-    ViewModelProvider.Factory viewModelFactory;
     private LanguageType languageType;
     private LanguagesSelectViewModel viewModel;
-    private LanguagesAdapter adapter;
+    @Inject
+    ViewModelProvider.Factory viewModelFactory;
+    @Inject
+    LanguagesAdapter adapter;
 
     public static LanguageSelectDialog getInstance(LanguageType languageType) {
         LanguageSelectDialog languageSelectDialog = new LanguageSelectDialog();
@@ -46,9 +47,8 @@ public class LanguageSelectDialog extends DaggerAppCompatDialogFragment {
         super.onAttach(context);
         languageType = (LanguageType) getArguments().getSerializable(LANGUAGE_TYPE_KEY);
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(LanguagesSelectViewModel.class);
-        viewModel.getLanguagesLiveData().observe(this, languages -> adapter.setLanguages(languages));
+        viewModel.getLanguagesLiveData().observe(this, languages -> adapter.setItems(languages));
 
-        adapter = new LanguagesAdapter();
         adapter.setViewModel(viewModel);
 
         LanguageSelectionEventViewModel languageSelectionEventViewModel = ViewModelProviders.of(getActivity()).get(LanguageSelectionEventViewModel.class);

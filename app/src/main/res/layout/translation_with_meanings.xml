@@ -12,73 +12,68 @@
             name="visibleMeaningText"
             type="String" />
 
-        <variable
-            name="viewmodel"
-            type="com.rektapps.greendictionary.viewmodel.EntryScreenViewModel"/>
-
         <import type="android.view.View" />
     </data>
 
 
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/translation_root"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp">
+        android:orientation="vertical">
+
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/translationMeaningRoot"
+            style="@style/LongClickStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="16dp"
+            android:paddingTop="16dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/expandArrow"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <include
+                    android:id="@+id/translationInclude"
+                    layout="@layout/translation"
+                    app:translation="@{translation}" />
+
+                <include
+                    android:id="@+id/visibleMeaningInclude"
+                    layout="@layout/meaning"
+                    app:meaningText="@{visibleMeaningText}" />
+
+            </LinearLayout>
+
+
+            <ImageView
+                android:id="@+id/expandArrow"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginRight="16dp"
+                android:src="@drawable/ic_keyboard_arrow_down"
+                android:visibility="@{translation.meanings.size() > 1 ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </android.support.constraint.ConstraintLayout>
 
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:id="@+id/collapsedMeaningsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:orientation="vertical"
-            app:layout_constraintEnd_toStartOf="@+id/expand_arrow"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <include
-                android:id="@+id/include"
-                layout="@layout/translation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="0dp"
-                app:viewmodel="@{viewmodel}"
-                app:translation="@{translation}" />
-
-            <include
-                android:id="@+id/visible_meaning"
-                layout="@layout/meaning"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:meaningText="@{visibleMeaningText}" />
-
-            <net.cachapa.expandablelayout.ExpandableLayout
-                android:id="@+id/expandable_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:el_duration="300"
-                app:el_expanded="false">
-
-                <LinearLayout
-                    android:id="@+id/collapsed_meanings_container"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical" />
-            </net.cachapa.expandablelayout.ExpandableLayout>
-
-        </LinearLayout>
-
-
-        <ImageView
-            android:id="@+id/expand_arrow"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="16dp"
-            android:visibility="@{translation.meanings.size() > 1 ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:src="@drawable/ic_keyboard_arrow_down" />
+            app:layout_constraintStart_toStartOf="parent" />
 
+    </LinearLayout>
 
-    </android.support.constraint.ConstraintLayout>
 
 </layout>

@@ -7,4 +7,6 @@
     <color name="emptyListColor">#757575</color>
     <color name="mainViewBgColor">#E0E0E0</color>
     <color name="listItemSelectedColor">#ffa270</color>
+    <color name="textColorBlack">#de000000</color>
+    <color name="textColorGray">#99000000</color>
 </resources>

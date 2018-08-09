@@ -8,6 +8,7 @@ import com.rektapps.greendictionary.dagger.module.ApiModule;
 import com.rektapps.greendictionary.dagger.module.AppModule;
 import com.rektapps.greendictionary.dagger.module.DaoModule;
 import com.rektapps.greendictionary.dagger.module.ServiceModule;
+import com.rektapps.greendictionary.dagger.module.ViewHolderFactoryModule;
 import com.rektapps.greendictionary.dagger.module.ViewModelModule;
 
 import javax.inject.Singleton;
@@ -25,7 +26,8 @@ import dagger.android.support.AndroidSupportInjectionModule;
         AndroidBindingModule.class,
         AppModule.class,
         ViewModelModule.class,
-        AndroidSupportInjectionModule.class
+        AndroidSupportInjectionModule.class,
+        ViewHolderFactoryModule.class
 })
 public interface AppComponent extends AndroidInjector<App> {
     void inject(App app);

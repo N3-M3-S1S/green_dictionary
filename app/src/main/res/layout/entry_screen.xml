@@ -5,10 +5,6 @@
     <data>
 
         <variable
-            name="viewmodel"
-            type="com.rektapps.greendictionary.viewmodel.EntryScreenViewModel" />
-
-        <variable
             name="entryScreenItem"
             type="com.rektapps.greendictionary.view.displayitem.EntryScreenItem" />
 
@@ -47,7 +43,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/entry_word"
+                    android:id="@+id/entryPhrase"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingLeft="8dp"
@@ -55,46 +51,37 @@
                     android:paddingTop="8dp"
                     android:text="@{entryScreenItem.entry.phrase}"
                     android:textAllCaps="true"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/textColorBlack"
                     android:textIsSelectable="true"
                     android:textSize="@dimen/entryScreenPhraseSize"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toTopOf="@+id/entry_word2"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/entry_languages"
+                    android:id="@+id/entryLanguages"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingBottom="8dp"
                     android:paddingLeft="8dp"
                     android:paddingRight="8dp"
                     android:textAllCaps="false"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/textColorGray"
                     android:textIsSelectable="true"
                     android:textSize="@dimen/entryScreenLanguagesSize"
                     app:bindLanguageDest="@{entryScreenItem.entry.languageDestCode}"
-                    app:bindLanguageFrom="@{entryScreenItem.entry.languageFromCode}"
-                    app:layout_constraintBottom_toTopOf="@+id/translation_title"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/entry_word" />
+                    app:bindLanguageFrom="@{entryScreenItem.entry.languageFromCode}" />
 
                 <TextView
-                    android:id="@+id/translation_title"
+                    android:id="@+id/translationTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingLeft="8dp"
                     android:paddingRight="8dp"
                     android:text="@string/translationsTitle"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/textColorBlack"
                     android:textSize="@dimen/entryScreenTitleSize" />
 
                 <TextView
-                    android:id="@+id/no_translations"
+                    android:id="@+id/noTranslations"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingLeft="8dp"
@@ -104,14 +91,14 @@
                     android:visibility="@{entryScreenItem.translations.size == 0 ? View.VISIBLE : View.GONE}" />
 
                 <android.support.v7.widget.RecyclerView
-                    android:id="@+id/translations_rv"
+                    android:id="@+id/translationsRv"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:visibility="@{entryScreenItem.translations.size != 0 ? View.VISIBLE : View.GONE}"
                     app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
 
                 <TextView
-                    android:id="@+id/examples_title"
+                    android:id="@+id/examplesTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingLeft="8dp"
@@ -121,7 +108,7 @@
                     android:textSize="@dimen/entryScreenTitleSize" />
 
                 <TextView
-                    android:id="@+id/no_examles"
+                    android:id="@+id/noExamles"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingLeft="8dp"
@@ -132,7 +119,7 @@
 
 
                 <android.support.v7.widget.RecyclerView
-                    android:id="@+id/examples_rv"
+                    android:id="@+id/examplesRv"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:visibility="@{entryScreenItem.examples.size != 0 ? View.VISIBLE : View.GONE}"

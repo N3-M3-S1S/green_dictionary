@@ -1,24 +1,28 @@
-package com.rektapps.greendictionary.view.adapter;
+package com.rektapps.greendictionary.view.adapter.impl;
 
 import android.arch.paging.PagedListAdapter;
-import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
 import android.support.v7.util.DiffUtil;
-import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import com.rektapps.greendictionary.greendictionary.R;
-import com.rektapps.greendictionary.view.adapter.viewholder.ListItemViewHolder;
+import com.rektapps.greendictionary.view.adapter.viewholder.factory.impl.ListItemViewHolderFactory;
+import com.rektapps.greendictionary.view.adapter.viewholder.impl.ListItemViewHolder;
 import com.rektapps.greendictionary.view.displayitem.ListItem;
 import com.rektapps.greendictionary.viewmodel.DictionaryListViewModel;
+
+import javax.inject.Inject;
 
 
 public class ListAdapter extends PagedListAdapter<ListItem, ListItemViewHolder> {
     private DictionaryListViewModel viewModel;
     private boolean isMultipleSelectionActive;
+    private ListItemViewHolderFactory factory;
 
-    public ListAdapter() {
+
+    @Inject
+    ListAdapter(ListItemViewHolderFactory  factory) {
         super(new DiffCallback());
+        this.factory = factory;
     }
 
 
@@ -28,17 +32,16 @@ public class ListAdapter extends PagedListAdapter<ListItem, ListItemViewHolder> 
     }
 
 
-
     @NonNull
     @Override
     public ListItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ListItemViewHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.dictionary_list_item, parent, false));
+        return factory.build(viewModel,parent);
     }
+
 
     @Override
     public void onBindViewHolder(@NonNull ListItemViewHolder holder, int position) {
-        ListItem listItem = getItem(position);
-        holder.bind(listItem, viewModel);
+        holder.bind(getItem(position));
         holder.setDeleteButtonVisible(isMultipleSelectionActive);
     }
 

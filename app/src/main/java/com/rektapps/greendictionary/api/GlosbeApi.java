@@ -8,7 +8,7 @@ import retrofit2.http.Query;
 
 public interface GlosbeApi {
 
-    @GET("/gapi/translate/?format=json&tm=true")
+    @GET("/gapi/translate?format=json&tm=true")
     Single<ApiResponse> search(@Query("from") String from, @Query("dest") String dest, @Query("phrase") String phrase);
 
 }

@@ -25,6 +25,7 @@ public class ApiErrorMessageCreatorImpl implements ApiErrorMessageCreator {
         else if (error instanceof UnknownHostException)
             return application.getString(R.string.unknown_host_error);
         else
-            return application.getString(R.string.unknown_error);
+            return application.getString(R.string.unknown_error, error.getMessage());
     }
+
 }

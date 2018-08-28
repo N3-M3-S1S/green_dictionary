@@ -43,8 +43,7 @@ public abstract class ApiModule {
     @Provides
     static OkHttpClient providesOkHttpClient() {
         OkHttpClient.Builder builder = new OkHttpClient.Builder().connectTimeout(10, TimeUnit.SECONDS);
-        if(BuildConfig.DEBUG)
-            builder.addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY));
+        builder.addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY));
         return builder.build();
     }
 
